@@ -1,5 +1,7 @@
-//Credits to https://github.com/hyrijk/logseq-plugin-split-block/blob/master/splitBlock.ts
+// Credits to https://github.com/hyrijk/logseq-plugin-split-block/blob/master/splitBlock.ts
+
 import { IBatchBlock } from "@logseq/libs/dist/LSPlugin.user";
+
 
 const isEmptyLine = (str: string) => /^\s*$/.test(str);
 export function splitBlock(blockContent: string) {
@@ -36,7 +38,6 @@ export function splitBlock(blockContent: string) {
     const indentDiff = indent - top.indent;
 
     if (indentDiff === 0) {
-      // 同级，加入父节点的 children
       if (top.parent) {
         top.parent.children!.push(nextBlock);
       } else {
@@ -44,7 +45,6 @@ export function splitBlock(blockContent: string) {
       }
       top.block = nextBlock;
     } else if (indentDiff > 0) {
-      // 缩进
       top.block.children!.push(nextBlock);
       stack.push({
         indent,
@@ -52,8 +52,6 @@ export function splitBlock(blockContent: string) {
         parent: top.block,
       });
     } else if (indentDiff < 0) {
-      // 反缩进
-      // 找到同一级别的 block 的 parent block
       while (top.indent > indent) {
         stack.pop();
         if (stack.length === 0) {
@@ -71,8 +69,7 @@ export function splitBlock(blockContent: string) {
         }
         top.block = nextBlock;
       } else {
-        // 缩进没对齐的情况
-        top.block.children.push(nextBlock);
+        top?.block?.children?.push(nextBlock);
         stack.push({
           indent,
           block: nextBlock,
@@ -82,12 +79,11 @@ export function splitBlock(blockContent: string) {
     }
   });
 
-
-//if the content of any block is empty and has no children, filter it out
+  //if the content of any block is empty and has no children, filter it out
   return batchBlock.filter((block) => {
     if (block.content.length < 3 ) {
         return false;
     }
     return true;
-});
+  });
 }

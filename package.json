@@ -1,31 +1,28 @@
 {
   "name": "logseq-web-parser",
-  "version": "1.0.4",
   "description": "Web Parser",
-  "main": "dist/index.html",
-  "targets": {
-    "main": false
+  "version": "1.0.4",
+  "author": "Aryan Sawhney",
+  "license": "MIT",
+  "keywords": [],
+  "logseq": {
+    "id": "logseq-web-parser",
+    "title": "logseq-web-parser",
+    "icon": "./icon.png",
+    "main": "./dist/index.html"
   },
-  "effect": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build --no-source-maps index.html --public-url ./"
   },
-  "keywords": [],
-  "author": "Aryan Sawhney",
-  "license": "MIT",
   "dependencies": {
-    "@logseq/libs": "0.0.1-alpha.35",
-    "@postlight/mercury-parser": "^2.2.1",
-    "node-html-markdown": "^1.2.0"
-  },
-  "logseq": {
-    "id": "logseq-web-parser",
-    "title": "logseq-web-parser",
-    "icon": "./icon.png"
+    "@logseq/libs": "0.0.17",
+    "@postlight/parser": "^2.2.3",
+    "node-html-markdown": "^1.3.0"
   },
   "devDependencies": {
-    "parcel": "^2.0.0",
-    "querystring-es3": "^0.2.1"
+    "parcel": "^2.13.2",
+    "querystring-es3": "^0.2.1",
+    "url": "^0.11.4"
   }
 }
